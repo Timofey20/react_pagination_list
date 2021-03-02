@@ -18,7 +18,6 @@ export default class Prapagination extends React.Component {
     });
   }
   handleSortBy = (value, item) => {
-    console.log(item.target.classList);
     let list = document.querySelectorAll(".butt");
     for (const i of list) {
       i.classList.remove("active");

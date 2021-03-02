@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Prapagination from "./prapagination";
+import Pagination from "./pagination";
 import SearchInput from "./searchInput";
 import "./index.css";
 
@@ -24,8 +24,8 @@ class App extends React.Component {
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((res) => res.json())
       .then((item) => this.setState({ items: item }))
-      .catch((error) => console.error(error))
-      .then(() => this.setState({ isLoaded: false }));
+      .then(() => this.setState({ isLoaded: false }))
+      .catch((error) => console.error(error));
   };
   handleInput(item) {
     this.setState({ searchInput: item });
@@ -39,7 +39,7 @@ class App extends React.Component {
           handleInput={this.handleInput}
         />
         {this.state.items.length !== 0 && (
-          <Prapagination
+          <Pagination
             items={this.state.items}
             search={this.state.searchInput}
           />
