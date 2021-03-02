@@ -1,17 +1,55 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import Prapagination from "./prapagination";
+import SearchInput from "./searchInput";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: true,
+      searchInput: "",
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+      activePage: 1,
+      items: [],
+    };
+    this.handleInput = this.handleInput.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetch_Data();
+  }
+  fetch_Data = () => {
+    fetch(`https://jsonplaceholder.typicode.com/posts`)
+      .then((res) => res.json())
+      .then((item) => this.setState({ items: item }))
+      .catch((error) => console.error(error))
+      .then(() => this.setState({ isLoaded: false }));
+  };
+  handleInput(item) {
+    this.setState({ searchInput: item });
+  }
+  render() {
+    const { isLoaded } = this.state;
+    return (
+      <div className="wrapper">
+        <SearchInput
+          value={this.state.searchInput}
+          handleInput={this.handleInput}
+        />
+        {this.state.items.length !== 0 && (
+          <Prapagination
+            items={this.state.items}
+            search={this.state.searchInput}
+          />
+        )}
+        <div className="center_center">
+          {isLoaded === true && <div className="anim"></div>}
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
