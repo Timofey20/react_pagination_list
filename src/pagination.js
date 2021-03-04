@@ -7,7 +7,7 @@ export default class Prapagination extends React.Component {
       todos: this.props.items,
       checkArr: [],
       currentPage: 1,
-      todosPerPage: 20,
+      todosPerPage: 10,
     };
     this.handleClick = this.handleClick.bind(this);
   }
