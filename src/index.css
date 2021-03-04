@@ -10,9 +10,7 @@ code {
 }
 
 .input {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  float: right;
 }
 
 input {
@@ -29,7 +27,7 @@ input:focus, .pageNumber:hover {
 
 .wrapper {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 20px auto 0px;
   padding: 0px 10px;
 }
 
@@ -54,6 +52,14 @@ input:focus, .pageNumber:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.notification {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .anim {

@@ -19,23 +19,23 @@ export default class Prapagination extends React.Component {
   }
   handleSortBy = (value, item) => {
     let list = document.querySelectorAll(".butt");
+    let { checkArr, todos } = this.state;
     for (const i of list) {
       i.classList.remove("active");
     }
     item.target.classList.add("active");
-    let { checkArr } = this.state;
     if (checkArr[checkArr.length - 1] !== value) {
       if (value === "id") {
-        this.state.todos.sort((a, b) => a[value] - b[value]);
+        todos.sort((a, b) => a[value] - b[value]);
       } else {
-        this.state.todos.sort((a, b) => (a[value] < b[value] ? -1 : 1));
+        todos.sort((a, b) => (a[value] < b[value] ? -1 : 1));
       }
       checkArr.push(value);
     } else if (checkArr[checkArr.length - 1] === value) {
       if (value === "id") {
-        this.state.todos.sort((a, b) => b[value] - a[value]);
+        todos.sort((a, b) => b[value] - a[value]);
       } else {
-        this.state.todos.sort((a, b) => (a[value] > b[value] ? -1 : 1));
+        todos.sort((a, b) => (a[value] > b[value] ? -1 : 1));
       }
       checkArr.push("abc");
     }
@@ -123,7 +123,7 @@ export default class Prapagination extends React.Component {
           </button>
         </div>
         <ul>{currentTodos}</ul>
-        <div className="notefication">
+        <div className="notification">
           {currentTodos.length === 0 && "Ничего не найдено!"}
         </div>
         <ul id="page-numbers">
